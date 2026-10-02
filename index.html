@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contador de Amor ❤️</title>
+
+  <!-- Fuente romántica -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f5;
+      color: #333;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #d6336c;
+      font-size: 2.2em;
+      margin-bottom: 25px;
+    }
+
+    .contador {
+      margin: 10px auto;
+      padding: 10px 15px;
+      border: 1.5px solid #d6336c;
+      border-radius: 10px;
+      background-color: #ffe6f0;
+      font-size: 0.9em;
+      max-width: 300px;
+    }
+
+    .tiempo {
+      font-weight: bold;
+      margin-top: 5px;
+      font-size: 1em;
+    }
+
+    .btn {
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.95em;
+      margin-top: 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #b02a52;
+    }
+
+    .carta {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #fff;
+      border: 1px solid #d6336c;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.95em;
+      white-space: pre-line;
+      box-shadow: 0 0 8px rgba(214, 51, 108, 0.15);
+    }
+
+    .mensaje-diario {
+      margin: 20px auto;
+      max-width: 400px;
+      padding: 10px;
+      background-color: #fff8fc;
+      border-left: 4px solid #d6336c;
+      font-size: 1em;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(214, 51, 108, 0.1);
+    }
+
+    .frase {
+      margin-top: 8px;
+      font-style: italic;
+      color: #b02a52;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🩵 NUESTRO TIEMPO JUNTOS🩵 </h1>
+
+  <div class="contador">
+    <strong>Años, Meses y Días</strong>
+    <div id="ymd" class="tiempo"></div>
+  </div>
+
+  <div class="contador">
+    <strong>Días, Horas, Minutos y Segundos</strong>
+    <div id="dhms" class="tiempo"></div>
+  </div>
+
+  <div class="mensaje-diario">
+    <h3>✨ Mensaje para hoy ✨</h3>
+    <div id="fraseDia" class="frase"></div>
+  </div>
+
+  <button class="btn" onclick="mostrarCarta()">💌 </button>
+
+  <div id="carta" class="carta">
+    Amor de mi vida
+
+Hoy cumplimos un año juntos, y todavía me parece increíble pensar en todo lo que hemos vivido durante este tiempo. Ha sido un año lleno de momentos que voy a guardar siempre en mi corazón, las risas, conversaciones, detalles, momentos difíciles y, sobre todo, muchos momentos felices a tu lado.
+
+Quiero agradecerte por estar conmigo, por tu cariño, por tu paciencia y por cada pequeño detalle que has tenido conmigo. Gracias por hacer que muchos de mis días sean mejores simplemente estando tú
+
+No sé exactamente qué nos espera en el futuro, pero sí sé que quiero seguir creando recuerdos contigo, seguir riéndome a tu lado y disfrutar cada momento que podamos compartir
+
+Te amooooooo milochomilmillonesinfinito mamor🩵
+  </div>
+
+  <script>
+    const fechaInicio = new Date("2025-10-01T22:00:00"); // Cambia aquí la fecha si quieres
+
+    function actualizarContadores() {
+      const ahora = new Date();
+
+      // Años, meses y días
+      let años = ahora.getFullYear() - fechaInicio.getFullYear();
+      let meses = ahora.getMonth() - fechaInicio.getMonth();
+      let días = ahora.getDate() - fechaInicio.getDate();
+
+      if (días < 0) {
+        meses--;
+        const diasMesAnterior = new Date(ahora.getFullYear(), ahora.getMonth(), 0).getDate();
+        días += diasMesAnterior;
+      }
+
+      if (meses < 0) {
+        años--;
+        meses += 12;
+      }
+
+      document.getElementById("ymd").textContent = `${años} años, ${meses} meses, ${días} días`;
+
+      // Días, horas, minutos, segundos
+      const diferenciaMs = ahora - fechaInicio;
+      const totalSegundos = Math.floor(diferenciaMs / 1000);
+      const totalDías = Math.floor(totalSegundos / 86400);
+      const horas = Math.floor((totalSegundos % 86400) / 3600);
+      const minutos = Math.floor((totalSegundos % 3600) / 60);
+      const segundos = totalSegundos % 60;
+
+      document.getElementById("dhms").textContent =
+        `${totalDías} días, ${horas}h, ${minutos}m, ${segundos}s`;
+    }
+
+    function mostrarCarta() {
+      const carta = document.getElementById("carta");
+      carta.style.display = carta.style.display === "none" ? "block" : "none";
+    }
+
+    const frasesRomanticas = [
+      "Eres mi primer pensamiento al despertar y el último al dormir.",
+      "Tu sonrisa ilumina hasta mis días más grises.",
+      "Contigo todo es mejor, incluso lo más simple.",
+      "Cada segundo contigo es un regalo.",
+      "Tú y yo, siempre, sin importar nada.",
+      "No necesito un sueño cuando tengo esta realidad contigo.",
+      "Gracias por existir y por elegirme cada día.",
+      "Eres mi lugar favorito en el mundo.",
+      "Amarte es lo más fácil que he hecho en mi vida.",
+      "Hoy solo quiero recordarte cuánto te amo.",
+      "Nuestro amor es mi historia favorita.",
+      "Eres mi paz, mi hogar y mi aventura.",
+      "Cada día contigo es una nueva razón para sonreír.",
+      "No cambiaría un segundo contigo por mil con alguien más.",
+      "Eres la casualidad más bonita que me pasó."
+    ];
+
+    function mostrarFraseDiaria() {
+      const hoy = new Date();
+      const indice = hoy.getDate() + hoy.getMonth() * 31;
+      const frase = frasesRomanticas[indice % frasesRomanticas.length];
+      document.getElementById("fraseDia").textContent = frase;
+    }
+
+    actualizarContadores();
+    mostrarFraseDiaria();
+    setInterval(actualizarContadores, 1000);
+  </script>
+
+</body>
+</html>
